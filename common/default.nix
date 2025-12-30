@@ -7,9 +7,16 @@
 	time.timeZone = "America/Los_Angeles";
 	
 	services.desktopManager.plasma6.enable = true;
-	services.displayManager.ly.enable = true;
-	# services.desktopManager.gnome.enable = true;
-	# services.displayManager.gdm.enable = true;
+	services.displayManager.ly = {
+		enable = true;	
+		settings = {
+			animation = "cmatrix";
+			clock = "%a %d %b %R";
+			bigclock = true;
+			save = true;
+			load = true;
+		};
+	};
 	
 	services.pipewire = {
 		enable = true;

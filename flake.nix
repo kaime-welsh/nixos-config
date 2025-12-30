@@ -5,6 +5,9 @@
 		nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 		home-manager.url = "github:nix-community/home-manager/master";
 		home-manager.inputs.nixpkgs.follows = "nixpkgs";
+		plasma-manager.url = "github:nix-community/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home-manager";
 	};
 
 	outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs: 
@@ -27,7 +30,7 @@
 					home-manager.nixosModules.home-manager {
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
-						home-manager.extraSpecialArgs = { inherit pkgs-stable; };
+						home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
 						home-manager.users.kai = import ./common/home.nix;
 					}
 				];
@@ -42,7 +45,7 @@
 					home-manager.nixosModules.home-manager {
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
-						home-manager.extraSpecialArgs = { inherit pkgs-stable; };
+						home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
 						home-manager.users.kai = import ./common/home.nix;
 					}
 				];

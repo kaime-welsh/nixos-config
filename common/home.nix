@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, osConfig, ... }:
+{ pkgs, pkgs-stable, osConfig, inputs, ... }:
 {
 	home.username = "kai";
 	home.homeDirectory = "/home/kai";
@@ -34,14 +34,22 @@
 	
 	home.packages = with pkgs; [
 		firefox
+		neofetch
+
 		helix
 		neovim
 		git
-		neofetch
+		gitui
+		yazi
+		zellij
 
-		discord
+		xclip
+		wl-clipboard
+
+		vesktop
 		mangohud
 		protonup-qt
 	];
+
 	home.stateVersion = "25.11";
 }

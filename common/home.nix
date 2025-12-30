@@ -122,6 +122,7 @@ programs.helix = {
 		protonup-qt
 
 		prismlauncher
+		signal-desktop
 	];
 
 	

@@ -24,6 +24,8 @@
 	hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;	
 
+	services.tailscale.enable = true;
+
 	services.pipewire = {
 		enable = true;
 		alsa.enable = true;

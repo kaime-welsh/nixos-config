@@ -12,6 +12,13 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
   hardware.nvidia = {
     modesetting.enable = true;
 

@@ -6,17 +6,19 @@
 	networking.networkmanager.enable = true;
 	time.timeZone = "America/Los_Angeles";
 	
-	services.desktopManager.plasma6.enable = true;
 	services.displayManager.ly = {
 		enable = true;	
 		settings = {
-			animation = "cmatrix";
+			animation = "gameoflife";
 			clock = "%a %d %b %R";
 			bigclock = true;
 			save = true;
 			load = true;
 		};
 	};
+	services.xserver.enable = true;
+	services.displayManager.sessionPackages = [ pkgs.kdePackages.plasma-workspace ];
+	services.desktopManager.plasma6.enable = true;
 	
 	services.pipewire = {
 		enable = true;

@@ -16,10 +16,14 @@
 			load = true;
 		};
 	};
+
 	services.xserver.enable = true;
 	services.displayManager.sessionPackages = [ pkgs.kdePackages.plasma-workspace ];
 	services.desktopManager.plasma6.enable = true;
-	
+
+	hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;	
+
 	services.pipewire = {
 		enable = true;
 		alsa.enable = true;

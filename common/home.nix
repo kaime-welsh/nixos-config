@@ -15,12 +15,6 @@
 	programs.ssh = {
 		enable = true;
 
-		extraConfig = ''
-		  Host github.com
-		    IdentityFile ~/.ssh/id_ed25519
-		    IdentitiesOnly yes
-		'';
-
 		matchBlocks = {
 			"*" = {
 				addKeysToAgent = "yes";
@@ -113,7 +107,7 @@ programs.helix = {
 		helix
 		neovim
 		git
-		gitui
+		lazygit
 		yazi
 		zellij
 
@@ -126,6 +120,8 @@ programs.helix = {
 		vesktop
 		mangohud
 		protonup-qt
+
+		prismlauncher
 	];
 
 	

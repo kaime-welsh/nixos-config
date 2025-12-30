@@ -16,7 +16,7 @@
 		enable = true;
 
 		matchBlocks = {
-			"*"" = {
+			"*" = {
 				addKeysToAgent = "yes";
 			};
 
@@ -121,6 +121,13 @@ programs.helix = {
 		mangohud
 		protonup-qt
 	];
+
+	
+	home.sessionVariables = {
+    # Forces Rust apps to use the system SSL/SSH libraries
+    # This often fixes "agent not found" issues in gitui/cargo
+    SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh"; 
+  };
 
 	home.stateVersion = "25.11";
 }

@@ -16,7 +16,7 @@
 		enable = true;
 
 		matchBlocks = {
-			* = {
+			"*"" = {
 				addKeysToAgent = "yes";
 			};
 

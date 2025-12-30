@@ -90,7 +90,7 @@ programs.helix = {
           ];
           G = [
             ":write-all"
-            ":insert-output gitui >/dev/tty"
+            ":insert-output lazygit >/dev/tty"
             ":redraw"
             ":reload-all"
           ];

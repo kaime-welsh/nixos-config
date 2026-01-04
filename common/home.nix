@@ -138,6 +138,8 @@
 		'';
   };
 
+  programs.starship.enable = true;
+
   home.packages = with pkgs; [
     # General apps
     thunderbird

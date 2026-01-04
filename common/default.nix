@@ -9,7 +9,7 @@
 	services.displayManager.ly = {
 		enable = true;	
 		settings = {
-			animation = "gameoflife";
+			# animation = "gameoflife";
 			clock = "%a %d %b %R";
 			bigclock = true;
 			save = true;

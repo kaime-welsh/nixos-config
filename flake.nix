@@ -10,10 +10,6 @@
 	    url = "github:dharmx/walls";
 	    flake = false; 
     };
-		nixvim = {
-	    url = "github:nix-community/nixvim";
-	    inputs.nixpkgs.follows = "nixpkgs";
-	  };
 	};
 	
 	outputs = { self, nixpkgs, nixpkgs-stable, stylix, home-manager, wallpapers, nixvim, ... }@inputs: 
@@ -24,42 +20,63 @@
 			inherit system;
 			config.allowUnfree = true;
 		};
+
+		mkSystem = hostname: nixpkgs.lib.nixosSystem {
+			inherit system;
+			specialArgs = { inherit pkgs-stable; inherit inputs; };
+			modules = [
+				./hosts/${hostname}/default.nix
+				./common/default.nix
+
+				stylix.nixosModules.stylix
+  
+				home-manager.nixosModules.home-manager {
+					# home-manager.backup = true;
+					home-manager.useGlobalPkgs = true;
+					home-manager.useUserPackages = true;
+					home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
+					home-manager.users.kai = import ./common/home.nix;
+				}
+			];
+		};
 	in {
 		nixosConfigurations = {
-			laptop = nixpkgs.lib.nixosSystem {
-				inherit system;
-				specialArgs = { inherit pkgs-stable; inherit inputs; };
-				modules = [
-					./hosts/laptop/default.nix
-					./common/default.nix
+			laptop = mkSystem "laptop";
+			desktop = mkSystem "desktop";
+			# laptop = nixpkgs.lib.nixosSystem {
+			# 	inherit system;
+			# 	specialArgs = { inherit pkgs-stable; inherit inputs; };
+			# 	modules = [
+			# 		./hosts/laptop/default.nix
+			# 		./common/default.nix
 
-					stylix.nixosModules.stylix
+			# 		stylix.nixosModules.stylix
 	  
-					home-manager.nixosModules.home-manager {
-						home-manager.useGlobalPkgs = true;
-						home-manager.useUserPackages = true;
-						home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
-						home-manager.users.kai = import ./common/home.nix;
-					}
-				];
-			};
-			desktop = nixpkgs.lib.nixosSystem {
-				inherit system;
-				specialArgs = { inherit pkgs-stable; inherit inputs; };
-				modules = [
-					./hosts/desktop/default.nix
-					./common/default.nix
+			# 		home-manager.nixosModules.home-manager {
+			# 			home-manager.useGlobalPkgs = true;
+			# 			home-manager.useUserPackages = true;
+			# 			home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
+			# 			home-manager.users.kai = import ./common/home.nix;
+			# 		}
+			# 	];
+			# };
+			# desktop = nixpkgs.lib.nixosSystem {
+			# 	inherit system;
+			# 	specialArgs = { inherit pkgs-stable; inherit inputs; };
+			# 	modules = [
+			# 		./hosts/desktop/default.nix
+			# 		./common/default.nix
 
-					stylix.nixosModules.stylix
+			# 		stylix.nixosModules.stylix
 
-					home-manager.nixosModules.home-manager {
-						home-manager.useGlobalPkgs = true;
-						home-manager.useUserPackages = true;
-						home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
-						home-manager.users.kai = import ./common/home.nix;
-					}
-				];
-			};
+			# 		home-manager.nixosModules.home-manager {
+			# 			home-manager.useGlobalPkgs = true;
+			# 			home-manager.useUserPackages = true;
+			# 			home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
+			# 			home-manager.users.kai = import ./common/home.nix;
+			# 		}
+			# 	];
+			# };
 		};
 	};
 }

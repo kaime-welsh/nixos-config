@@ -41,7 +41,8 @@
 
 	programs.gamemode.enable = true;
 
-  home.packages = with pkgs; [    
+  environment.systemPackages = with pkgs; [    
+    goverlay
 		lutris
 		mangohud
 		protonup-qt

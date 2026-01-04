@@ -1,5 +1,9 @@
 { pkgs, pkgs-stable, osConfig, inputs, lib, ... }:
 {
+	imports = [
+		inputs.nixvim.homeManagerModules.nixvim
+	];
+
 	home.username = "kai";
 	home.homeDirectory = "/home/kai";
 	
@@ -34,19 +38,34 @@
 			update = "sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}";
 		};
 	};
+
+	programs.nixvim = {
+		enable = true;
+		opts = {
+			number = true;
+			relativenumber = true;
+			shiftwidth = 2;
+		};
+
+		plugins = {
+			yazi = {
+				enable = true;
+			};
+		};
+	};
 	
 	programs.helix = {
     enable = true;
     defaultEditor = true;
 
     settings = {
-      theme = lib.mkForce "base16_transparent";
-
       editor = {
         line-number = "relative";
         scroll-lines = 1;
         auto-pairs = true;
         bufferline = "always";
+
+        indent-guides.render = true;
         
         cursor-shape = {
           insert = "bar";
@@ -98,24 +117,49 @@
     };
   };	
 
+	programs.ghostty = {
+		enable = true;
+		enableBashIntegration = true;
+	};
+
+	programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+  };
+
 	home.packages = with pkgs; [
+		# General apps
 		thunderbird
 		firefox
 		neofetch
+		kdePackages.plasma-integration
 
-		# ghostty
+		# Development
+		nil
 		git
 		lazygit
 		helix
 		yazi
 		zellij
 		starship
-
 		just
-		netcat-gnu
+		ffmpeg
+		imagemagick
+		p7zip
+		jq
+		poppler
+		fd
+		ripgrep
+		fzf
+		zoxide
+		resvg
+		xsel
 		xclip
 		wl-clipboard
+		netcat-gnu
 
+		# Social
 		signal-desktop
 		vesktop
 	];	

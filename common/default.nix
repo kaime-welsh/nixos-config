@@ -38,13 +38,8 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 	nixpkgs.config.allowUnfree = true;
 
-	programs.ghostty = {
-		enable = true;
-		enableBashIntegration = true;
-	};
-
 	stylix.enable = true;
-	stylix.image = "${inputs.wallpapers}/abstract/a_painting_of_a_man_with_a_dripping_face.jpg";
+	stylix.image = "${inputs.wallpapers}/fauna/a_black_and_orange_drawing_of_a_bug.png";
 	stylix.polarity = "dark";
 
 	system.stateVersion = "25.11";

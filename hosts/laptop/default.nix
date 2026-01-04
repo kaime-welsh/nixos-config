@@ -4,7 +4,7 @@
 		./hardware.nix
 	];
 
-	home.packages = with pkgs; [
+	environment.systemPackages = with pkgs; [
 		moolight-qt	
 	];
 	

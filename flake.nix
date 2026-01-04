@@ -6,16 +6,17 @@
 		home-manager.url = "github:nix-community/home-manager/master";
 		home-manager.inputs.nixpkgs.follows = "nixpkgs";
 		stylix.url = "github:danth/stylix";
-		plasma-manager.url = "github:nix-community/plasma-manager";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-    plasma-manager.inputs.home-manager.follows = "home-manager";
     wallpapers = {
-            url = "github:dharmx/walls";
-            flake = false; 
-        };
+	    url = "github:dharmx/walls";
+	    flake = false; 
+    };
+		nixvim = {
+	    url = "github:nix-community/nixvim";
+	    inputs.nixpkgs.follows = "nixpkgs";
+	  };
 	};
-
-	outputs = { self, nixpkgs, nixpkgs-stable, stylix, home-manager, plasma-manager, wallpapers, ... }@inputs: 
+	
+	outputs = { self, nixpkgs, nixpkgs-stable, stylix, home-manager, wallpapers, nixvim, ... }@inputs: 
 	let
 		system = "x86_64-linux";
 

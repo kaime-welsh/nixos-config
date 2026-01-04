@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
@@ -22,9 +22,7 @@
 	services.desktopManager.plasma6.enable = true;
 
 	hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;	
-
-	services.tailscale.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
 	services.pipewire = {
 		enable = true;
@@ -40,14 +38,14 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 	nixpkgs.config.allowUnfree = true;
 
-	programs.steam = {
+	programs.ghostty = {
 		enable = true;
-		remotePlay.openFirewall = true;
-		dedicatedServer.openFirewall = true;
-		localNetworkGameTransfers.openFirewall = true;
+		enableBashIntegration = true;
 	};
 
-	programs.gamemode.enable = true;
+	stylix.enable = true;
+	stylix.image = "${inputs.wallpapers}/abstract/a_painting_of_a_man_with_a_dripping_face.jpg";
+	stylix.polarity = "dark";
 
 	system.stateVersion = "25.11";
 }

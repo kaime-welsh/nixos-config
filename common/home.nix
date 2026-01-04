@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, osConfig, inputs, ... }:
+{ pkgs, pkgs-stable, osConfig, inputs, lib, ... }:
 {
 	home.username = "kai";
 	home.homeDirectory = "/home/kai";
@@ -34,14 +34,13 @@
 			update = "sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}";
 		};
 	};
-
 	
-programs.helix = {
+	programs.helix = {
     enable = true;
     defaultEditor = true;
 
     settings = {
-      theme = "base16_transparent";
+      theme = lib.mkForce "base16_transparent";
 
       editor = {
         line-number = "relative";
@@ -100,35 +99,28 @@ programs.helix = {
   };	
 
 	home.packages = with pkgs; [
+		thunderbird
 		firefox
 		neofetch
 
-		ghostty
-		helix
-		neovim
+		# ghostty
 		git
 		lazygit
+		helix
 		yazi
 		zellij
+		starship
 
 		just
 		netcat-gnu
-
 		xclip
 		wl-clipboard
 
-		vesktop
-		mangohud
-		protonup-qt
-
-		prismlauncher
 		signal-desktop
-	];
+		vesktop
+	];	
 
-	
 	home.sessionVariables = {
-    # Forces Rust apps to use the system SSL/SSH libraries
-    # This often fixes "agent not found" issues in gitui/cargo
     SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh"; 
   };
 

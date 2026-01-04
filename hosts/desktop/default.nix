@@ -30,5 +30,23 @@
     nvidiaSettings = true;
 
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };    
+  };
+
+	programs.steam = {
+		enable = true;
+		remotePlay.openFirewall = true;
+		dedicatedServer.openFirewall = true;
+		localNetworkGameTransfers.openFirewall = true;
+	};
+
+	programs.gamemode.enable = true;
+
+  home.packages = with pkgs; [    
+		lutris
+		mangohud
+		protonup-qt
+		prismlauncher
+		r2modman
+		nexusmods-app
+  ];
 }

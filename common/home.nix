@@ -36,7 +36,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      update = "sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}";
+      update = "git pull && sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}";
       ls = "lsd -la";
       cd = "z";
     };

@@ -41,6 +41,7 @@
 	stylix.enable = true;
 	stylix.image = "${inputs.wallpapers}/fauna/a_black_and_orange_drawing_of_a_bug.png";
 	stylix.polarity = "dark";
+	stylix.targets.qt.enable = false;
 
 	system.stateVersion = "25.11";
 }

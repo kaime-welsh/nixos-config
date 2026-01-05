@@ -18,7 +18,7 @@
 
   programs.ssh = {
     enable = true;
-
+    enableDefaultConfig = false;
     matchBlocks = {
       "*" = {
         addKeysToAgent = "yes";
@@ -36,6 +36,8 @@
     enable = true;
     shellAliases = {
       update = "sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}";
+      ls = "lsd -la";
+      cd = "z";
     };
   };
 
@@ -45,12 +47,15 @@
 
     settings = {
       editor = {
+        # theme = "base16_terminal";
         line-number = "relative";
         scroll-lines = 1;
         auto-pairs = true;
         bufferline = "always";
 
         indent-guides.render = true;
+
+        auto-format = true;
 
         cursor-shape = {
           insert = "bar";
@@ -126,19 +131,23 @@
     enable = true;
     enableBashIntegration = true;
     extraConfig = ''
-			keybinds {
-        shared {
-          bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-          bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-          bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-          bind "Alt k" "Alt Up" { MoveFocus "Up"; }
-          bind "Alt m" { ToggleFloatingPanes; }
-        }
-      }
-		'';
+      			keybinds {
+              shared {
+                bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+                bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+                bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+                bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+                bind "Alt m" { ToggleFloatingPanes; }
+              }
+            }
+      		'';
   };
 
   programs.starship.enable = true;
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+  };
 
   home.packages = with pkgs; [
     # General apps
@@ -155,6 +164,7 @@
     yazi
     zellij
     starship
+    lsd
     just
     ffmpeg
     imagemagick
@@ -172,6 +182,7 @@
     netcat-gnu
 
     # Social
+    anytype
     signal-desktop
     vesktop
   ];

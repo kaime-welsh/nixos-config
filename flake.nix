@@ -43,40 +43,6 @@
 		nixosConfigurations = {
 			laptop = mkSystem "laptop";
 			desktop = mkSystem "desktop";
-			# laptop = nixpkgs.lib.nixosSystem {
-			# 	inherit system;
-			# 	specialArgs = { inherit pkgs-stable; inherit inputs; };
-			# 	modules = [
-			# 		./hosts/laptop/default.nix
-			# 		./common/default.nix
-
-			# 		stylix.nixosModules.stylix
-	  
-			# 		home-manager.nixosModules.home-manager {
-			# 			home-manager.useGlobalPkgs = true;
-			# 			home-manager.useUserPackages = true;
-			# 			home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
-			# 			home-manager.users.kai = import ./common/home.nix;
-			# 		}
-			# 	];
-			# };
-			# desktop = nixpkgs.lib.nixosSystem {
-			# 	inherit system;
-			# 	specialArgs = { inherit pkgs-stable; inherit inputs; };
-			# 	modules = [
-			# 		./hosts/desktop/default.nix
-			# 		./common/default.nix
-
-			# 		stylix.nixosModules.stylix
-
-			# 		home-manager.nixosModules.home-manager {
-			# 			home-manager.useGlobalPkgs = true;
-			# 			home-manager.useUserPackages = true;
-			# 			home-manager.extraSpecialArgs = { inherit pkgs-stable; inherit inputs; };
-			# 			home-manager.users.kai = import ./common/home.nix;
-			# 		}
-			# 	];
-			# };
 		};
 	};
 }

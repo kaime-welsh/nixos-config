@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   osConfig,
   ...
 }:
@@ -130,17 +131,21 @@
   programs.zellij = {
     enable = true;
     enableBashIntegration = true;
+    settings = {
+      default_mode = "locked";
+      show_startup_tips = false;
+    };
     extraConfig = ''
-      			keybinds {
-              shared {
-                bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-                bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-                bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-                bind "Alt k" "Alt Up" { MoveFocus "Up"; }
-                bind "Alt m" { ToggleFloatingPanes; }
-              }
-            }
-      		'';
+      keybinds {
+        shared {
+          bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+          bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+          bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+          bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+          bind "Alt m" { ToggleFloatingPanes; }
+        }
+      }
+  	'';
   };
 
   programs.starship.enable = true;
@@ -182,7 +187,7 @@
     netcat-gnu
 
     # Social
-    anytype
+    pkgs-stable.anytype
     signal-desktop
     vesktop
   ];

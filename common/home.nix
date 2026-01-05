@@ -36,7 +36,8 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      update = "git pull && sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}";
+      update = "cd ~/nixos-config; git fetch; git pull; sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}; cd -";
+      config = "cd ~/nixos-config";
       ls = "lsd -la";
       cd = "z";
     };
@@ -156,6 +157,8 @@
 
   home.packages = with pkgs; [
     # General apps
+    pkgs-stable.anytype
+    onlyoffice-desktopeditors
     thunderbird
     firefox
     neofetch

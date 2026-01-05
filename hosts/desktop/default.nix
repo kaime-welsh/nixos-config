@@ -12,13 +12,6 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
-
   hardware.nvidia = {
     modesetting.enable = true;
 
@@ -40,6 +33,13 @@
 	};
 
 	programs.gamemode.enable = true;
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   environment.systemPackages = with pkgs; [    
     goverlay

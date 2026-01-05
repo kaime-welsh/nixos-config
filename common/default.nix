@@ -39,8 +39,8 @@
 	nixpkgs.config.allowUnfree = true;
 
 	stylix.enable = true;
-	# stylix.image = "${inputs.wallpapers}/fauna/a_black_and_orange_drawing_of_a_bug.png";
-	stylix.image = "${inputs.wallpapers}/spam/a_street_lights_and_buildings_at_night.png";
+	stylix.image = "${inputs.wallpapers}/fauna/a_black_and_orange_drawing_of_a_bug.png";
+	# stylix.image = "${inputs.wallpapers}/spam/a_street_lights_and_buildings_at_night.png";
 	stylix.polarity = "dark";
 	stylix.targets.qt.enable = false;
 

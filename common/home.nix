@@ -154,8 +154,8 @@
               bind "Alt j" "Alt Down" { MoveFocus "Down"; }
               bind "Alt k" "Alt Up" { MoveFocus "Up"; }
               bind "Alt f" { ToggleFloatingPanes; }
-              bind "Alt t" { NewTab; }
-              bind "Alt p" { NewPane; }
+              bind "Alt m" { NewTab; }
+              bind "Alt n" { NewPane; }
             }
           }
       	'';

@@ -35,9 +35,19 @@
 
   programs.bash = {
     enable = true;
+    enableCompletion = true;
+    initExtra = ''
+      function y() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        command yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d "" cwd < "$tmp"
+        [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+        rm -f -- "$tmp"
+      }
+    '';
     shellAliases = {
-      update = "cd ~/nixos-config; git fetch; git pull; sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}; cd -";
-      config = "cd ~/nixos-config";
+      update = "cd ~/nixos-config && git fetch && git pull && sudo nixos-rebuild switch --flake ~/nixos-config#${osConfig.networking.hostName}; cd -";
+      config = "cd ~/nixos-config && hx ./";
       ls = "lsd -la";
       cd = "z";
     };
@@ -137,16 +147,22 @@
       show_startup_tips = false;
     };
     extraConfig = ''
-      keybinds {
-        shared {
-          bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-          bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-          bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-          bind "Alt k" "Alt Up" { MoveFocus "Up"; }
-          bind "Alt m" { ToggleFloatingPanes; }
-        }
-      }
-  	'';
+          keybinds {
+            shared {
+              bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+              bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+              bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+              bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+              bind "Alt f" { ToggleFloatingPanes; }
+              bind "Alt t" { NewTab; }
+              bind "Alt p" { NewPane; }
+            }
+          }
+      	'';
+  };
+
+  programs.yazi = {
+    enable = true;
   };
 
   programs.starship.enable = true;
@@ -193,6 +209,9 @@
     pkgs-stable.anytype
     signal-desktop
     vesktop
+
+    # Util
+    kdePackages.kcalc
   ];
 
   home.sessionVariables = {

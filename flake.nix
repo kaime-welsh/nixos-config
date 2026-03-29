@@ -25,7 +25,7 @@
             nixpkgs.overlays = [ overlay-unstable ];
           })
           ./configuration.nix
-          ./hosts/relay/
+          ./hosts/relay
           ./modules/trilium.nix
           ./modules/lldap.nix
           ./modules/authelia.nix
@@ -45,7 +45,7 @@
             nixpkgs.overlays = [ overlay-unstable ];
           })
           ./configuration.nix
-        ./hosts/citadel/
+        ./hosts/citadel
         ];
       };
     };

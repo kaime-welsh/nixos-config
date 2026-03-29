@@ -24,6 +24,7 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-unstable ];
           })
+          ./hosts/relay/hardware-configuration.nix
           ./configuration.nix
           ./hosts/relay
           ./modules/trilium.nix
@@ -44,8 +45,9 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-unstable ];
           })
+          ./hosts/citadel/hardware-configuration.nix
           ./configuration.nix
-        ./hosts/citadel
+          ./hosts/citadel
         ];
       };
     };

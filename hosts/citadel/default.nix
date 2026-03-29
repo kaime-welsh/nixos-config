@@ -1,4 +1,4 @@
 { ... }:
 {
-  networking.hostname = "citadel";
+  networking.hostName = "citadel";
 }

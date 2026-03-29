@@ -1,0 +1,20 @@
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/homarr-labs/homarr:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./homarr/appdata:/appdata
+    environment:
+      - SECRET_ENCRYPTION_KEY=c59e1cf13ce4c9926b83923ae5967b9d4b38399a87a463fcaca888419f10bc7e
+      - AUTH_OIDC_ENABLED=true
+      - AUTH_OIDC_URI="https://auth.kaiwelsh.me"
+      - AUTH_OIDC_CLIENT_ID="homarr"
+      - AUTH_OIDC_CLIENT_SECRET="$argon2id$v=19$m=65536,t=3,p=4$+4CAEkM/7xWSP7fHOx3IjA$qs3dGyLFnRXMQDeTZr8875vDltTJlY/+bGr+eLXpdQI"
+      - AUTH_OIDC_ADMIN_GROUP="admins"
+      - AUTH_OIDC_OWNER_GROUP="admins"
+      - AUTH_OIDC_SCOPE="openid profile groups email"
+      - AUTH_OIDC_DISPLAY_NAME_CLAIM="preferred_username"
+    ports:
+      - '7575:7575'

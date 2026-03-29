@@ -52,7 +52,6 @@
     cargo
     clang
     llvm
-    treesitter
   ];
 
   services.openssh.enable = true;

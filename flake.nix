@@ -32,9 +32,9 @@
           ./modules/authelia.nix
           ./modules/caddy.nix
           ./modules/cloudflared.nix
-          ./modules/dashdot.nix
-          ./modules/homarr/homarr.nix
-          ./modules/teamspeak/teamspeak6.nix
+          # ./modules/dashdot.nix
+          # ./modules/homarr/homarr.nix
+          # ./modules/teamspeak/teamspeak6.nix
         ];
       };
 

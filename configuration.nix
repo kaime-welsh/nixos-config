@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-    ];
+  imports = [];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -30,7 +28,9 @@
     isNormalUser = true;
     description = "SYSOP";
     extraGroups = [ "docker" "networkmanager" "wheel" ];
-    packages = with pkgs; [ ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHnhVHVPEqucRklIjuyHxfr6+iRHQtBJ8AiROvRs0bCH sysop@uplink"
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -39,23 +39,10 @@
     git
     curl
     unstable.helix
-    zellij
-    yazi
     nil
     compose2nix
-    unstable.neovim
-    fzf
-    ripgrep
-    fd
     lazygit
-    curl
-    cargo
-    clang
-    llvm
   ];
-
-  services.openssh.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 ];
 
   services.avahi = {
     enable = true;
@@ -72,7 +59,11 @@
     package = pkgs.unstable.tailscale;
   };
 
-  virtualisation.docker.enable = true;
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
 
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 22 ]; # only allow ssh over tailscale
+
+  virtualisation.docker.enable = true;
   system.stateVersion = "25.11";
 }

@@ -42,7 +42,7 @@
         '';
       };
 
-      "lldap.kaiwelsh.me:80" = {
+      "http://relay:80" = {
         extraConfig = ''
           # import auth
           reverse_proxy 127.0.0.1:17170

@@ -27,13 +27,6 @@
         }
       '';
 
-      "home.kaiwelsh.me:80" = {
-        extraConfig = ''
-          # import auth
-          reverse_proxy 127.0.0.1:7575
-        '';
-      };
-
       "auth.kaiwelsh.me:80" = {
         extraConfig = ''
           reverse_proxy 127.0.0.1:9091 {
@@ -42,7 +35,7 @@
         '';
       };
 
-      "http://relay:80" = {
+      "http://relay.lldap:80" = {
         extraConfig = ''
           # import auth
           reverse_proxy 127.0.0.1:17170

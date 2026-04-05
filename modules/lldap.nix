@@ -9,6 +9,7 @@
       ldap_base_dn = "dc=kaiwelsh,dc=me";
       ldap_user_dn = "admin";
       jwt_secret = "7962669000519e64038556e0bf0ed085653d63ad88e48b3620ef82269fd365a1";
+      ldap_user_pass = "ch4ngem3!";
     };
   };
 

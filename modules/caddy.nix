@@ -13,6 +13,7 @@
 
     virtualHosts = {
       "trilium.kaiwelsh.me:80".extraConfig = ''
+        log
         handle /assets* {
           reverse_proxy 127.0.0.1:8080
         }
@@ -27,20 +28,17 @@
         }
       '';
 
-      "auth.kaiwelsh.me:80" = {
-        extraConfig = ''
-          reverse_proxy 127.0.0.1:9091 {
-            header_up X-Forwarded-Proto https
-          }
-        '';
-      };
+      "auth.kaiwelsh.me:80".extraConfig = ''
+        log
+        reverse_proxy 127.0.0.1:9091 {
+          header_up X-Forwarded-Proto https
+        }
+      '';
 
-      "http://relay.lldap:80" = {
-        extraConfig = ''
-          # import auth
-          reverse_proxy 127.0.0.1:17170
-        '';
-      };
+      "http://relay.lldap:80".extraConfig = ''
+        log
+        reverse_proxy 127.0.0.1:17170
+      '';
     };
   };
 }

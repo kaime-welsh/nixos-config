@@ -1,4 +1,5 @@
-{...}:{
+{ pkgs, ... }:
+{
   services.caddy = {
     enable = true;
     extraConfig = ''
@@ -39,6 +40,36 @@
         log
         reverse_proxy 127.0.0.1:17170
       '';
+
+      "matrix.kaiwelsh.me:80" = {
+        extraConfig = ''
+          log
+          # Client discovery so Element knows where the homeserver is
+          handle /.well-known/matrix/client {
+            header Access-Control-Allow-Origin "*"
+            header Content-Type "application/json"
+            respond `{"m.homeserver": {"base_url": "https://matrix.kaiwelsh.me"}}`
+          }
+
+          # Proxy all Matrix API traffic to Continuwuity
+          handle /_matrix/* {
+            reverse_proxy 127.0.0.1:6167
+          }
+
+          # Default fallback
+          handle {
+            abort
+          }
+        '';
+      };
+
+      "http://chat.kaiwelsh.me:80" = {
+        extraConfig = ''
+          log
+          root * ${pkgs.element-web}
+          file_server
+        '';
+      };
     };
   };
 }

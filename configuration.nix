@@ -60,7 +60,7 @@
   };
 
   services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = false;
+  services.openssh.settings.PasswordAuthentication = true;
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 22 ]; # only allow ssh over tailscale
 
